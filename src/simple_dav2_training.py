@@ -39,7 +39,7 @@ class SimpleDAV2Config:
     Change your options here; the rest of the code reads from this.
     """
 
-    # --- Data paths ---
+    # Data paths
     summer_path:     Path = Path("data/processed/clipped_2022_end.tif")   # Summer RGB 2022
     winter_path:     Path = Path("data/processed/winter_clipped_lowres.tif")  # Winter RGB 2022 (fixed reference)
     ahn_path:        Path = Path("data/processed/ahn4_2022_ams.tif")      # AHN4 2022
@@ -49,7 +49,7 @@ class SimpleDAV2Config:
     output_dir:      Path = Path("outputs")
 
     # Data year (included in the checkpoint name)
-    # This way a 2022 training never overwrites a 2024 checkpoint.
+    # This way a 2022 training never overwrites a 2024 checkpoint
     data_year: str = "2022"
 
     # Model
@@ -62,7 +62,7 @@ class SimpleDAV2Config:
     batch_size:      int = 1
     num_workers:     int = 0  
 
-    # --- Tree mask ---
+    # Tree mask
     min_tree_height:    float = 4.0    
     max_tree_height:    float = 17.0   
     min_valid_ratio:    float = 0.05  
@@ -626,7 +626,7 @@ def run_training(
         scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
 
     # Give the checkpoint a descriptive name
-    # data_year is included so a 2022 run never overwrites a 2024 checkpoint.
+    # data_year is included so a 2022 run never overwrites a 2024 checkpoint
     norm_tag = "norm1" if config.normalize_target else "norm0"
     name = (
         f"clean_dav2_siamese_{config.encoder}_"
@@ -924,7 +924,7 @@ def make_temporal_test_loader(
     _, _, test_coords = build_or_load_patch_coords(train_config)
     test_coords = limit_coords(test_coords, max_patches, train_config.seed + 2)
 
-    # Replace only the summer image and CIR; winter and AHN stay the same
+    # Replace only the summer image and CIR, winter and AHN stay the same
     orig = train_config.paths()
     new_paths = RasterPaths(
         summer     = Path(summer_path),
