@@ -1,0 +1,13 @@
+# Large binaries (exceed GitHub's 100 MB limit)
+outputs/checkpoints/
+third_party/
+
+# Raster data (input + generated height maps)
+*.tif
+
+# macOS / Python / Jupyter cruft
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.Rhistory
